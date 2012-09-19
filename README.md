@@ -5,7 +5,7 @@ This View Controller allows you to provide a pattern image as a moveable backgro
 
 We see here that I have Table Cells in the foreground that have dynamic heights (their cells have a UIImageView as their backgroundView with no image loaded and backgroundColor set to [UIColor clearColor], with a colored contentView).  The background tile pattern is one fixed image that populates the cells in this background table.  The heights of those cells in the background are a multiple of the pattern image's height
 
-[Imgur](http://i.imgur.com/KjUNm.png)
+![Imgur](http://i.imgur.com/KjUNm.png)
 
 
 
