@@ -51,7 +51,8 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="frontTable" destination="CWS-hB-YiV" id="rFQ-OH-gRX"/>
+                        <outlet property="masterScrollView" destination="CWS-hB-YiV" id="QkZ-Vt-00M"/>
+                        <outlet property="table" destination="CWS-hB-YiV" id="5c5-Bi-AiF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4S-a5-cl5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,11 +64,14 @@
         <class className="SOPatternBGTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SOPatternBGTableViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="frontTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="masterScrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="TestViewController" superclassName="SOPatternBGTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TestViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

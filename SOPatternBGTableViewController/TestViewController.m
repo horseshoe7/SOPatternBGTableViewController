@@ -25,7 +25,7 @@
     
     // we change colors just to show the different rows.
     
-    if (tableView == self.frontTable) {
+    if (tableView == self.table) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ContentCell"];
         
         if (isOdd) {
@@ -47,7 +47,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // this bit should really be set in subclass.
-    if (tableView == self.frontTable) {
+    if (tableView == self.table) {
         return 1;
     }
     
@@ -62,7 +62,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.frontTable) {
+    if (tableView == self.table) {
         return 100;
     }
     

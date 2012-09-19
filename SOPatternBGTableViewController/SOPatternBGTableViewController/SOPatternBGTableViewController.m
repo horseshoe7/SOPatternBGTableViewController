@@ -10,7 +10,7 @@
 
 #import "SOPatternBGTableViewController.h"
 
-// that means that compared to your frontTable, your backTable's frame should be -200 and +400 in y and height, respectively.  THIS IS IMPORTANT that you have this correct in your XIB or otherwise.  This is to ensure that the background is always scrolling
+// that means that compared to your masterScrollView, your backTable's frame should be -200 and +400 in y and height, respectively.  THIS IS IMPORTANT that you have this correct in your XIB or otherwise.  This is to ensure that the background is always scrolling
 
 // if you haven't redefined elsewhere...
 #ifndef BACK_TABLE_OUTER_MARGIN
@@ -24,7 +24,7 @@
     UIImage *_backgroundPattern;
 }
 @property (nonatomic, strong) UIImage *backgroundPattern;
-@property (nonatomic, weak) UITableView *frontTable;
+@property (nonatomic, weak) UIScrollView *masterScrollView;
 @end
 
 @implementation SOBackingTableView
@@ -32,7 +32,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"contentSize"]) {
-        [self reloadData];  // front table's contentSize has changed, so we have to trigger a reload in our table to recalculate the number of rows required to fit the frontTable's new contentSize.
+        [self reloadData];  // front table's contentSize has changed, so we have to trigger a reload in our table to recalculate the number of rows required to fit the masterScrollView's new contentSize.
     }
     else if ([keyPath isEqualToString:@"contentOffset"])
     {
@@ -40,6 +40,13 @@
         UITableView *front = (UITableView*)object;
         self.contentOffset = front.contentOffset;
     }
+}
+
+- (void)dealloc
+{
+    // dont' forget to remove the observers or the app will easily crash!
+    [self.masterScrollView removeObserver: self forKeyPath:@"contentSize" context:nil];
+    [self.masterScrollView removeObserver: self forKeyPath:@"contentOffset" context: nil];
 }
 
 - (UIImage*)backgroundPattern { return _backgroundPattern;}
@@ -89,8 +96,8 @@
 {
     if (tableView == self){
         
-        // number of rows we'd need to be enough to fit behind the frontTable's content, and if that content is not enough to fill the screen we make sure the backing table will fill the screen.
-        NSInteger numRows = ceilf(MAX(self.frontTable.contentSize.height, self.frontTable.bounds.size.height)/self.rowHeight);
+        // number of rows we'd need to be enough to fit behind the masterScrollView's content, and if that content is not enough to fill the screen we make sure the backing table will fill the screen.
+        NSInteger numRows = ceilf(MAX(self.masterScrollView.contentSize.height, self.masterScrollView.bounds.size.height)/self.rowHeight);
         
         // now figure out how many rows it would take to fill the table margins.  right now we prototyped 200 above and below the front table
         numRows += ceilf(2*BACK_TABLE_OUTER_MARGIN/self.rowHeight);
@@ -124,8 +131,8 @@
 
 - (void)setupBackTable
 {
-    NSAssert(self.frontTable != nil, @"You need to set the frontTable property in your NIB or your loadView method if you want to use this class!");
-    CGRect newFrame = self.frontTable.bounds;
+    NSAssert(self.masterScrollView != nil, @"You need to set the masterScrollView property in your NIB or your loadView method if you want to use this class!");
+    CGRect newFrame = self.masterScrollView.bounds;
     newFrame.origin.y -= BACK_TABLE_OUTER_MARGIN;
     newFrame.size.height += 2*BACK_TABLE_OUTER_MARGIN;
     
@@ -149,7 +156,7 @@
     else
         rowHeight = 64.0f;
     
-    ((SOBackingTableView*)_backTable).frontTable = self.frontTable;
+    ((SOBackingTableView*)_backTable).masterScrollView = self.masterScrollView;
     _backTable.rowHeight = rowHeight;
     _backTable.dataSource = (SOBackingTableView*)_backTable;
     _backTable.delegate = (SOBackingTableView*)_backTable;
@@ -159,12 +166,12 @@
     [self.view insertSubview: _backTable atIndex:0];
     
     
-    // make the backTable listen to changes in frontTable's contentSize (i.e. if the contentChanges)
-    [self.frontTable addObserver: _backTable
+    // make the backTable listen to changes in masterScrollView's contentSize (i.e. if the contentChanges)
+    [self.masterScrollView addObserver: _backTable
                       forKeyPath: @"contentSize"
                          options:NSKeyValueObservingOptionNew context:nil];
 
-    [self.frontTable addObserver: _backTable
+    [self.masterScrollView addObserver: _backTable
                       forKeyPath:@"contentOffset"
                          options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -177,6 +184,5 @@
     [self setupBackTable];
     
 }
-
 
 @end

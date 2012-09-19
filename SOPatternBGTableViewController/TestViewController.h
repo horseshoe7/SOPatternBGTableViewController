@@ -11,4 +11,6 @@
 
 @interface TestViewController : SOPatternBGTableViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *table;
+
 @end

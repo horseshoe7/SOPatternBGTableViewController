@@ -23,7 +23,7 @@
 
 @interface SOPatternBGTableViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITableView *frontTable;
+@property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
 @property (readonly, nonatomic) UITableView *backTable;  
 @property (nonatomic, strong) UIImage *backgroundPattern;
 @end
