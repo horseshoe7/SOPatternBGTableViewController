@@ -3,6 +3,11 @@ SOPatternBGTableViewController
 
 This View Controller allows you to provide a pattern image as a moveable background that scrolls with your content (e.g a UIScrollView or UITableView)  with that scroll view's content, which (if a tableView) could have row heights that are not a multiple of your desired background tile size.
 
+We see here that I have Table Cells in the foreground that have dynamic heights (their cells have a UIImageView as their backgroundView with no image loaded and backgroundColor set to [UIColor clearColor], with a colored contentView).  The background tile pattern is one fixed image that populates the cells in this background table.  The heights of those cells in the background are a multiple of the pattern image's height
+
+[Imgur](http://i.imgur.com/KjUNm.png)
+
+
 
 Installation and Usage
 ======================
@@ -23,3 +28,4 @@ It should be that the masterScrollView can have dynamic height content, and back
  
 In your subclass you should ensure that the self.masterScrollView property is set in either loadView, in a NIB/Storyboard, or BEFORE you call [super viewDidLoad].  The same is generally true for the backgroundPattern property.
  
+
