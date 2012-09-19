@@ -89,8 +89,8 @@
 {
     if (tableView == self){
         
-        // number of rows we'd need to be enough to fit behind the frontTable's content.
-        NSInteger numRows = ceilf(self.frontTable.contentSize.height/self.rowHeight);
+        // number of rows we'd need to be enough to fit behind the frontTable's content, and if that content is not enough to fill the screen we make sure the backing table will fill the screen.
+        NSInteger numRows = ceilf(MAX(self.frontTable.contentSize.height, self.frontTable.bounds.size.height)/self.rowHeight);
         
         // now figure out how many rows it would take to fill the table margins.  right now we prototyped 200 above and below the front table
         numRows += ceilf(2*BACK_TABLE_OUTER_MARGIN/self.rowHeight);

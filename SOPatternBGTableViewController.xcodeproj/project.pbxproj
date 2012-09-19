@@ -22,6 +22,7 @@
 		DC5333301609BDD700C20177 /* background_tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC53332E1609BDD700C20177 /* background_tile@2x.png */; };
 		DC5333331609BDF700C20177 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5333321609BDF700C20177 /* TestViewController.m */; };
 		DC5333351609BF4500C20177 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC5333341609BF4500C20177 /* LICENSE.txt */; };
+		DC53334A1609E12E00C20177 /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC5333491609E12E00C20177 /* ToDo.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		DC5333311609BDF700C20177 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		DC5333321609BDF700C20177 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		DC5333341609BF4500C20177 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		DC5333491609E12E00C20177 /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		DC5332F71609BD4C00C20177 = {
 			isa = PBXGroup;
 			children = (
+				DC5333491609E12E00C20177 /* ToDo.txt */,
 				DC53330C1609BD4C00C20177 /* SOPatternBGTableViewController */,
 				DC5333051609BD4C00C20177 /* Frameworks */,
 				DC5333031609BD4C00C20177 /* Products */,
@@ -188,6 +191,7 @@
 				DC53332F1609BDD700C20177 /* background_tile.png in Resources */,
 				DC5333301609BDD700C20177 /* background_tile@2x.png in Resources */,
 				DC5333351609BF4500C20177 /* LICENSE.txt in Resources */,
+				DC53334A1609E12E00C20177 /* ToDo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

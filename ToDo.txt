@@ -1,0 +1,16 @@
+ToDo.txt
+========
+
+
+O   Change this:
+
+    @property (strong, nonatomic) IBOutlet UITableView *frontTable;
+    
+    to this:
+    
+    @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
+    
+    So that the user can program their view however they want, then have to remember to assign the masterScrollView to the scrollView they want to use to control the background table.
+    
+
+O   Consider making this class possible with categories instead of subclassing.
