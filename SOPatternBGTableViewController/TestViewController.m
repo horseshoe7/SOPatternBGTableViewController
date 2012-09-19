@@ -23,12 +23,13 @@
     UITableViewCell *cell;
     BOOL isOdd = (BOOL)(indexPath.row % 2);
     
-    // we change colors just to demonstrate that you have 2 tableviews running, each with their own background heights.
+    // we change colors just to show the different rows.
     
     if (tableView == self.frontTable) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ContentCell"];
         
         if (isOdd) {
+            // check the prototype cell defined in the storyboard
             [[cell viewWithTag:10] setBackgroundColor: [UIColor purpleColor]];
         }
         else
@@ -36,11 +37,10 @@
             [[cell viewWithTag:10] setBackgroundColor: [UIColor cyanColor]];
         }
         
-        return cell;
+        
     }
 
-    // handle backTable
-    return [super tableView:tableView cellForRowAtIndexPath: indexPath];
+    return cell;
     
 }
 
@@ -51,14 +51,13 @@
         return 1;
     }
     
-    // handle backTable
-    return [super numberOfSectionsInTableView: tableView];
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // generate some random height
-    return  82 - 15 + arc4random()%30;
+    // generate some random height.  Note the viewWithTag: 10 in the prototype cell is not set to autoresize its height so that you can see gaps in the cells (so to see the background table)
+    return  82 + (indexPath.row * 5) % 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -67,8 +66,7 @@
         return 100;
     }
     
-    // handle backTable
-    return [super tableView:tableView numberOfRowsInSection:section];
+    return 0;
 }
 
 

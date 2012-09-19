@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SOPatternBGTableViewController.h"
 
-@interface TestViewController : SOPatternBGTableViewController
+@interface TestViewController : SOPatternBGTableViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

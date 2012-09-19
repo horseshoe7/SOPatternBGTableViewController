@@ -21,7 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOPatternBGTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SOPatternBGTableViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *frontTable;
 @property (readonly, nonatomic) UITableView *backTable;  
